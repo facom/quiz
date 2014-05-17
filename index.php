@@ -166,7 +166,7 @@ CONTENIDO;
     echo "... Respuesta Estudiante: -$respest-<br/>";
     echo "... Respuesta Esperada: -$respreal-<br/>";
     echo "... Resultado: ";
-    if(preg_match("/$respest/",$respreal)){
+    if($respest==$respreal){
       echo "<i style=color:green>Aprobado</i><br/>";
       $s+=1;
     }else{
