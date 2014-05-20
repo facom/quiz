@@ -37,6 +37,38 @@ foreach(array_keys($_POST) as $field){
 }
 
 ////////////////////////////////////////////////////////////
+//PROFESOR
+////////////////////////////////////////////////////////////
+if(isset($_GET['profesor']) and $_POST['password']=='1qazxsw2'){
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  //ACCIONES
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  if($accion=="Bloquea"){
+    shell_exec("touch $DIRPRUEBA/.block");
+    echo "<i style='color:red'>Bloqueado.</i>";
+  }
+  if($accion=="Desbloquea"){
+    shell_exec("rm -rf $DIRPRUEBA/.block");
+    echo "<i style='color:red'>Desbloqueado.</i>";
+  }
+
+  echo "<form method='post'>";
+  if(file_exists("$DIRPRUEBA/.block")){
+    $button="<input type='submit' name='accion' value='Desbloquea'>";
+  }else{
+    $button="<input type='submit' name='accion' value='Bloquea'>";
+  }
+echo<<<CONTENIDO
+<input type='hidden' name='password' value='$password'>
+<h3>Profesor</h3>
+$button
+CONTENIDO;
+ echo "</form>";
+  return;
+}
+
+////////////////////////////////////////////////////////////
 //PRESENTA
 ////////////////////////////////////////////////////////////
 if($_GET["accion"]=="presenta"){
@@ -183,18 +215,29 @@ CONTENIDO;
   
   homeLink();
 }else{
-
 ////////////////////////////////////////////////////////////
 //PRINCIPAL
 ////////////////////////////////////////////////////////////
+  if(file_exists("$DIRPRUEBA/.block")){
+      echo "<p style='color:red'>La prueba esta deshabilitada.</a>";
+      return 0;
+  }
+
+if(isset($_GET['profesor']) and !isset($_POST['password'])){
+echo "<form method='post'>";
 echo<<<CONTENIDO
-<form>
+Password:<input type="password" name="password"><br/>
+<input type="submit" name="accion" value="accede">
+CONTENIDO;
+}else{
+echo "<form>";
+echo<<<CONTENIDO
 Documento de Identidad:<input type="text" name="cedula"><br/>
-Palabra secreta:<input type="text" name="palabra"><br/>
+Palabra secreta:<input type="password5B" name="palabra"><br/>
 <i style="font-size:12px">Escoge una palabra corta de facil recordacion</i><br/>
 <input type="submit" name="accion" value="presenta">
-</form>
 CONTENIDO;
-
+}
+echo "</form>";
 }
 ?>
