@@ -233,7 +233,7 @@ CONTENIDO;
 echo "<form>";
 echo<<<CONTENIDO
 Documento de Identidad:<input type="text" name="cedula"><br/>
-Palabra secreta:<input type="password5B" name="palabra"><br/>
+Palabra secreta:<input type="password" name="palabra"><br/>
 <i style="font-size:12px">Escoge una palabra corta de facil recordacion</i><br/>
 <input type="submit" name="accion" value="presenta">
 CONTENIDO;
