@@ -1,0 +1,11 @@
+A que hace referencia la sigla "DIMM"
+
+a) Es una tecnologia reciente utilizada en los procesadores mas
+   rapidos.
+b) Se refiere al metodo que usan los monitores para representar la
+   informacion.
+c) Es uno de los tipos de modulos de memoria RAM.
+d) Es el nombre del protocolo usado por el disco duro para leer datos del Cache
+e) Ninguna de las anteriores.
+
+#R#c
