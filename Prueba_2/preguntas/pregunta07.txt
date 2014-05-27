@@ -1,0 +1,9 @@
+Es una ventaja de un disco duro de estado solido (SSD):
+
+a) Es mucho mas barato que un disco duro magnetico.
+b) Tienen mucha mayor capacidad de almacenamiento.
+c) Son mucho mas rapidos.
+d) La mayoria de los computadores actuales los usan.
+e) Todas las anteriores.
+
+#R#c
