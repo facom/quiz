@@ -218,11 +218,6 @@ CONTENIDO;
 ////////////////////////////////////////////////////////////
 //PRINCIPAL
 ////////////////////////////////////////////////////////////
-  if(file_exists("$DIRPRUEBA/.block")){
-      echo "<p style='color:red'>La prueba esta deshabilitada.</a>";
-      return 0;
-  }
-
 if(isset($_GET['profesor']) and !isset($_POST['password'])){
 echo "<form method='post'>";
 echo<<<CONTENIDO
@@ -230,6 +225,11 @@ Password:<input type="password" name="password"><br/>
 <input type="submit" name="accion" value="accede">
 CONTENIDO;
 }else{
+  if(file_exists("$DIRPRUEBA/.block")){
+      echo "<p style='color:red'>La prueba esta deshabilitada.</a>";
+      return 0;
+  }
+
 echo "<form>";
 echo<<<CONTENIDO
 Documento de Identidad:<input type="text" name="cedula"><br/>
