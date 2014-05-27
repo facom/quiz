@@ -1,9 +1,11 @@
-Es una ventaja de un disco duro de estado solido (SSD):
+Si el ancho de banda del servicio 4G-LTE provisto por un operador de
+celular es teóricamente 80 Mbps ¿Cuál es la velocidad de descarga en
+bytes?
 
-a) Es mucho mas barato que un disco duro magnetico.
-b) Tienen mucha mayor capacidad de almacenamiento.
-c) Son mucho mas rapidos.
-d) La mayoria de los computadores actuales los usan.
-e) Todas las anteriores.
+a) 80 kilobytes por segundo
+b) 10 kilobytes por segundo
+c) 10 megabytes por segundo
+d) 640 kilobytes por segundo
+e) Ninguna de las anteriores
 
 #R#c

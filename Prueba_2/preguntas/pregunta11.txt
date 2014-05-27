@@ -1,12 +1,11 @@
-Dadas las dos configuraciones mostradas en la imagen ¿cual de las
-siguientes afirmaciones es verdadera?
+De acuerdo a Google Scholar ¿cuántas citaciones tiene el primer
+artículo escrito por los profesores Jorge Zuluaga e Ignacio Ferrin
+sobre el meteorito ruso?
 
-a) Los dos computadores tienen un procesador multinucleo.
-b) El computador de la configuracion 2 es un portatil.
-c) El computador de la configuracion 2 tienes menos GB de RAM por
-   cada nucleo.
-d) El computador de la configuracion 1 no seria apropiado para un
-   trabajo pesado con graficos o calculos.
-e) Todas las anteriores
+a) 25
+b) 11
+c) 350
+d) 0
+e) Ninguna de las anteriores
 
-#R#e
+#R#b

@@ -1,9 +1,10 @@
-Cual de los siguientes no un es parametro basico de la CPU:
+El lenguaje informático usado para representar las paginas en la web
+es:
 
-a) La frecuencia del reloj.
-b) El tamano de la cache.
-c) El tamano de la palabra (32 o 64 bits).
-d) El modelo.
-e) El tipo de transferencia de datos, estatico o dinamico.
+a) El inglés.
+b) No hay un lenguaje preferido.
+c) El HyperText Markup Language (HTML).
+d) Java.
+e) Flash.
 
-#R#e
+#R#c

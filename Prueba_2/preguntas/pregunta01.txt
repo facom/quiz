@@ -1,9 +1,10 @@
-De los siguientes dispositivos cual no es un computador:
+Para identificar un computador o dispositivo de hardware en la red se
+utiliza como idnetificador unico:
 
-a) Tableta
-b) Consola avanzada de juegos
-c) Celular Inteligente
-d) Ultrabook
-e) Televisor inteligente
+a) La dirección IP.
+b) La dirección MAC del dispositivo.
+c) El URL del computador.	
+d) El serial del bus de datos del computador.
+e) La ubicación física de mi computador.
 
-#R#e
+#R#b

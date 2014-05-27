@@ -1,11 +1,11 @@
-Cual de las siguientes es una diferencia fundamental entre un laptop y
-ultrabook:
+Use las busquedas semánticas en la web para indicar cuál es la parte
+entera (el número sin decimales y sin redondear) del resultado de
+multiplicar el número pi por si mismo 10 veces:
 
-a) El ultrabook es mucho mas grande.
-b) El laptop es portatil, el ultrabook no.
-c) El ultrabook es normalmente mas compacto.
-d) El laptop tiene un rendimiento generalmente mas bajo que el de un
-   ultrabook.
-e) Todas las anteriores.
+a) 474761
+b) 93648
+c) 29809
+d) 993334
+e) Ninguna de las anteriores
 
-#R#c
+#R#b

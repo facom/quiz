@@ -1,9 +1,12 @@
-Cual de las siguientes es la memoria de acceso mas rapido:
+¿Cuál es la cifra o dígito 422 (422nd) del número pi? (Use internet
+para resolver este ejercicio)
 
-a) Memoria RAM
-b) Memoria Cache
-c) Memoria Flash
-d) Disco Duro
-e) Todas tienen la misma velocidad de acceso
+NOTA: El numero 3 es también un dígito de pi.
 
-#R#b
+a) 2
+b) 4
+c) 8
+d) 0
+e) 5
+
+#R#d

@@ -1,9 +1,11 @@
-Cuales de los siguientes son las componentes basicos de un computador:
+¿Cuál es el protocolo más utilizado en las comunicaciones por redes
+entre dispositivos informáticos en el presente, independiente del
+contenido transmitido?
 
-a) Procesador, Memoria, Buses de datos
-b) Chasis, Monitor, Teclado
-c) CPU, Perifericos, Internet
-d) Mouse, Teclado, Monitor y CPU
-e) Memoria RAM, Disco Duro, Procesador
+a) WiFi
+b) HTTP
+c) Gopher
+d) IP
+e) Ethernet
 
-#R#a
+#R#d
