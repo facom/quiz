@@ -65,9 +65,62 @@ if(isset($_GET['profesor']) and $_POST['password']=='1qazxsw2'){
 echo<<<CONTENIDO
 <input type='hidden' name='password' value='$password'>
 <h3>Profesor</h3>
-$button
+$button<br/>
+<input type='submit' name='accion' value='Solucion'>
 CONTENIDO;
  echo "</form>";
+
+  if($accion=="Solucion"){
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  //EXAMEN
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  require_once("$DIRPRUEBA/prueba.conf");
+
+echo<<<CONTENIDO
+  <H4>Prueba</H4>
+CONTENIDO;
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //SEARCH FOR PREGUNTAS
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  $out=shell_exec("ls -m $DIRPRUEBA/preguntas/pregunta*.txt");
+  $preguntas=preg_split("/\s*,\s*/",$out);
+  $numpreguntas=count($preguntas);
+  $NUMTEST=$numpreguntas;
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //CREATE INDICE ARRAY
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  $indices=array();
+  for($i=0;$i<$numpreguntas;$i++){
+    array_push($indices,$i);
+  }
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //SHOW QUESTIONS
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  for($i=0;$i<$NUMTEST;$i++){
+    $indice=$indices[$i];
+    $pregunta=$preguntas[$indice];
+    $out=shell_exec("grep -v '#R#' $pregunta");
+
+    $parts=preg_split("/\./",$pregunta);
+    $imagen=sprintf("%s.png",$parts[0]);
+    if(file_exists($imagen)){
+      $img="<a href='$imagen'><img src='$imagen' width='600px'></a>";
+    }else{$img="";}
+    $respuesta=rtrim(shell_exec("grep '#R#' $pregunta"));
+    $respuesta=preg_replace("/[\s\n\r]*\#R\#[\s\n\r]*/","",$respuesta);
+    $n=$i+1;
+    $original=$indice+1;
+echo<<<CONTENIDO
+  <H5>PREGUNTA $n:</H5>
+      $img
+      <pre>$out</pre>
+      <p style=color:red>La respuesta es: $respuesta.</p>
+CONTENIDO;
+  }
+  }
   return;
 }
 
