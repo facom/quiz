@@ -249,7 +249,9 @@ if($_GET["accion"]=="califica"){
 	$n=$matching[1];
 	echo "<H4>Pregunta $n</H4>";
 	$respuesta=shell_exec("cat $respuesta");
-	echo "Respuesta:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
+	echo "Respuesta estudiante:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
+	$respuesta_esperada=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.sol");
+	echo "Respuesta esperada:<br/><pre style='background:yellow;color:red;padding:10px'>$respuesta_esperada</pre>";
 	echo "Evaluación:<br/><br/>";
 	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
 	$criterios=preg_split("/\n/",$out);
