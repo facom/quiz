@@ -1,0 +1,11 @@
+No es una función del sistema operativo:
+
+a) Garantizar que el computador encienda y suba a la RAM las
+   aplicaciones básicas para empezar funcionar.
+b) Gestionar la memoria RAM.
+c) Asignar tareas al procesador.
+d) Manejar la información almacenada en el disco.
+e) Servir de intermediario entre el usuario, las aplicaciones y el
+   hardware.
+
+#R#a

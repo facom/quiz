@@ -1,0 +1,9 @@
+El sistema de archivos "ext4" es utilizado por el sistema operativo:
+
+a) Linux
+b) Windows
+c) OS X
+d) Symbian
+e) iOS
+
+#R#a

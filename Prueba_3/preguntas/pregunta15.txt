@@ -1,0 +1,12 @@
+La función del símbolo "&" (ampersand) al final de algunos comandos de
+Linux es:
+
+a) Pedir al sistema operativo que asigne más rápido los recursos al
+   comando.
+b) Hacer que el comando se ejecute inmediatamente.
+c) Hacer que el comando que abre una ventana separada de la terminal,
+   lo haga sin bloquear la terminal.
+d) Ejecutar el comando como "superusuario" (root).
+e) Ninguna de las anteriores.
+
+#R#c

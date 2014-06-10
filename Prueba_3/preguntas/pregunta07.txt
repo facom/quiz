@@ -1,0 +1,12 @@
+Cuál de las siguientes definiciones cortas mejor sintetiza lo que hace
+el Sistema Operativo en un computador:
+
+a) Sistema encargado de prender el computador.
+b) Sistema encargado de gestionar los recursos del computador.
+c) Sistema encargado exclusivamente de almacenar la información del computador.
+d) Sistema encargado de velar por el funcionamiento del computador y
+   notificar las fallas.
+e) Sistema encargado exclusivamente de comunicarse con el usuario a
+   través de una interface amigable.
+
+#R#b

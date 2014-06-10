@@ -1,0 +1,12 @@
+¿Cuál de las siguientes afirmaciones es verdadera en relación con los
+sistemas operativos más populares?
+
+a) El sistema operativo OS X es el más popular del mundo.
+b) El sistema operativo windows usa el mismo tipo de sistema de
+   archivos de Windows.
+c) Existen solamente 3 distribuciones de Linux: Debian, Redhat y
+   Slackware.
+d) El sistema operativo OS X esta basado en Unix (Linux BSD)
+e) Ninguna de las afirmaciones es verdadera.
+
+#R#e

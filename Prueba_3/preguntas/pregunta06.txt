@@ -1,0 +1,10 @@
+¿Cuál de los siguientes no es un Sistema Operativo para dispositivos
+móviles?
+
+a) Symbian
+b) iOS
+c) Firefox OS
+d) Ubunutu touch
+e) WinOS
+
+#R#e

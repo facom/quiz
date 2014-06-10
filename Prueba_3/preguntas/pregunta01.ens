@@ -1,0 +1,26 @@
+En la casilla abajo escriba en el orden correcto los comandos de Linux
+necesarios para ejecutar las siguientes tareas.  Use el caracter "_"
+para indicar los espacios en blanco:
+
+1) Crear un directorio con nombre "Ejercicio" en el directorio casa
+   del usuario.
+
+2) Pasarse al directorio "Ejercicio".
+
+3) Descargar desde la línea de comandos el archivo con URL
+   http://astronomia.udea.edu.co/tmp/archivos.tar.gz de modo que quede
+   en el directorio "Ejercicio".
+
+4) Descomprimir y desempacar el archivo "archivos.tar.gz"
+
+5) Borrar todos los archivos con extensión "doc"
+
+6) Crear los directorios "Documentos", "Imagenes"
+
+7) Mover los archivos con extensión "gif" en la carpeta "Imagenes"
+
+8) Mover los archivos con extension "pdf" y "txt" en la carpeta "Documentos"
+
+9) Volver al directorio casa.
+
+10) Borrar el directorio "Ejercicio".
