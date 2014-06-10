@@ -1,4 +1,4 @@
-En el contexto de la programación, el término metadatos se refiere a:
+En el contexto del sistema de archivos, el término metadatos se refiere a:
 
 a) cada una de las divisiones lógicas de un dispositivo de
    almacenamiento donde hay un Sistema de Archivos
