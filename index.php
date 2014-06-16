@@ -518,6 +518,11 @@ CONTENIDO;
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //CALIFICAR
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  if(file_exists("$DIRPRUEBA/respuestas/$cedula/respuestas.txt")){
+    echo "Usted ya envio sus respuestas.";
+    shell_exec("echo 'Rebaja' $DIRPRUEBA/respuestas/$cedula/rebaja.txt");
+    return;
+  } 
 echo<<<CONTENIDO
 Su repuesta ha sido recibida.  Preguntas $numpreguntas.
 <p></p>
