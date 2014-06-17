@@ -126,7 +126,7 @@ CONTENIDO;
     foreach($pruebas as $prueba){
       echo "<H3>Prueba '$prueba'</H3>";
       $prueba=rtrim($prueba);
-      $DIRPRUEBA=$prueba;
+      $DIRPRUEBA="$prueba";
       require_once("$DIRPRUEBA/prueba.conf");
       $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
       $estudiantes=preg_split("/\s*,\s*/",$out);
