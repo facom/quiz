@@ -9,3 +9,5 @@ b) Determina el número de décadas completas que ha vivido una persona.
 c) Determina si una persona tiene una edad par o impar.
 d) Carece completamente de propósito.
 e) Calcula el siglo en el que una persona nació.
+
+#R#b

@@ -322,7 +322,7 @@ if($_GET["accion"]=="califica"){
 	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
 	$criterios=preg_split("/\n/",$out);
 	$numcrit=count($criterios)-1;
-	echo "<input type='hidden' name='pregunta$n_numcrit' value='$numcrit'>";
+	echo "<input type='hidden' name='pregunta${n}_numcrit' value='$numcrit'>";
 	//print_r($criterios);
 	$out=shell_exec("grep '^\*' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
 	$puntajes=preg_split("/\n/",$out);
@@ -388,15 +388,16 @@ else if($_GET["accion"]=="evalua"){
     preg_match("/respuesta(\d+)\.txt/",$respuesta,$matching);
     $n=$matching[1];
     echo "<H4>Pregunta $n</H4>";
-    $name="pregunta$n_numcrit";
+    $name="pregunta${n}_numcrit";
     $numcrit=$$name;
-    //echo "Numero de criterios: $numcrit<br/>";
+    //echo "Numero de criterios ($n,$name): $numcrit<br/>";
     $nota=0;
     for($ic=1;$ic<=$numcrit;$ic++){
       $name="pregunta_${n}_critertio_$ic";
       $valor=$$name;
       $nota+=$valor;
       echo "<i>Calificacion criterio $ic</i>: $valor<br/>";
+      fwrite($fl,"\tC$ic:$valor\n");
     }
     $nota=$nota/$numcrit;
     $definitiva+=$nota;
