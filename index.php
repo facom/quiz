@@ -110,6 +110,11 @@ CONTENIDO;
       if($group==$grupo or $group==0){
 	$ftest="$estudiante/respuestas.txt";
 	$fensayo="$estudiante/ensayo.txt";
+
+	if(!file_exists($fensayo)){
+	  echo "$estudiante_cedula NO CALIFICADO<br/>";
+	}
+	
 	$nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
 	$nota_ensayo=rtrim(shell_exec("tail -n 1 $fensayo"));
 	$totpreguntas=$NUMTEST+$NUMESSAY;
