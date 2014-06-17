@@ -123,20 +123,25 @@ CONTENIDO;
   if($accion=="Pruebas"){
     $pruebas=shell_exec("ls -md Prueba_[0-9]*");
     $pruebas=preg_split("/\s*,\s*/",$pruebas);
+    echo "<H3>Resultados de las pruebas</H3>";
     foreach($pruebas as $prueba){
-      echo "<H3>Prueba '$prueba'</H3>";
+      //echo "<H3>Prueba '$prueba'</H3>";
       $prueba=rtrim($prueba);
       $DIRPRUEBA="$prueba";
       require_once("$DIRPRUEBA/prueba.conf");
       $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
       $estudiantes=preg_split("/\s*,\s*/",$out);
       $numestudiantes=count($estudiantes);
-      echo "<table border=1><tr><td>Grupo</td><td>Cedula</td><td>Test</td><td>Ensayo</td><td>Definitiva</td></tr>";
+      $csvfile="tmp/grupo-$group-$prueba.csv";
+      $fl=fopen($csvfile,"w");
+      fwrite($fl,"'Grupo','Cedula','Test','Ensayo','Definitiva'\n");
+      $estudiantes=file("Grupos/grupo$group.txt");
       foreach($estudiantes as $estudiante){
-	$estudiante=rtrim($estudiante);
-	preg_match("/respuestas\/(\d+)/",$estudiante,$matches);
-	$estudiante_cedula=$matches[1];
+	$estudiante_cedula=rtrim($estudiante);
+	$estdir="$DIRPRUEBA/respuestas/$estudiante_cedula";
+	echo "ESTUDIANTE:$estdir<br/>";
 	$out=shell_exec("grep -H '^$estudiante_cedula\$' Grupos/*.txt");
+	echo "OUT: $out<br/>";
 	if(preg_match("/\d/",$out)){
 	  preg_match("/grupo(\d+)\.txt/",$out,$matches);
 	  $grupo=$matches[1];
@@ -144,17 +149,17 @@ CONTENIDO;
 	  $grupo="(No Id.)";
 	}
 	if($group==$grupo or $group==0){
-	  $ftest="$estudiante/respuestas.txt";
-	  $fensayo="$estudiante/ensayo.txt";
+	  $ftest="$estdir/respuestas.txt";
+	  $fensayo="$estdir/ensayo.txt";
 	  $nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
 	  $nota_ensayo=rtrim(shell_exec("tail -n 1 $fensayo"));
 	  $totpreguntas=$NUMTEST+$NUMESSAY;
 	  $definitiva=($nota_test*$NUMTEST+$nota_ensayo*$NUMESSAY)/$totpreguntas;
-	  $definitiva=sprintf("%.1f",$definitiva);
-	  echo "<tr><td>$grupo</td><td>$estudiante_cedula</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+	  $resultado=sprintf("'$grupo','$estudiante_cedula','%.1f','%.1f','%.1f'\n",$nota_test,$nota_ensayo,$definitiva);
+	  fwrite($fl,$resultado);
 	}
       }
-      echo "</table>";
+      echo "<a href='$csvfile'>$prueba</a><br/>";
     }
   }
   if($accion=="Solucion"){
