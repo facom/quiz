@@ -113,6 +113,9 @@ CONTENIDO;
 
 	if(!file_exists($fensayo)){
 	  echo "$estudiante_cedula NO CALIFICADO<br/>";
+	  $urlestudiante="<a href='?accion=califica&qestudiante=$estudiante_cedula>$estudiante_cedula</a>";
+	}else{
+	  $urlestudiante="$estudiante_cedula";
 	}
 	
 	$nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
@@ -120,7 +123,7 @@ CONTENIDO;
 	$totpreguntas=$NUMTEST+$NUMESSAY;
 	$definitiva=($nota_test*$NUMTEST+$nota_ensayo*$NUMESSAY)/$totpreguntas;
 	$definitiva=sprintf("%.1f",$definitiva);
-	echo "<tr><td>$grupo</td><td>$estudiante_cedula</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+	echo "<tr><td>$grupo</td><td>$urlestudiante</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
       }
     }
     echo "</table>";
