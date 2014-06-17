@@ -119,6 +119,36 @@ CONTENIDO;
     }
     echo "</table>";
   }
+  if($accion=="Pruebas"){
+    require_once("$DIRPRUEBA/prueba.conf");
+    $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
+    $estudiantes=preg_split("/\s*,\s*/",$out);
+    $numestudiantes=count($estudiantes);
+    echo "<table border=1><tr><td>Grupo</td><td>Cedula</td><td>Test</td><td>Ensayo</td><td>Definitiva</td></tr>";
+    foreach($estudiantes as $estudiante){
+      $estudiante=rtrim($estudiante);
+      preg_match("/respuestas\/(\d+)/",$estudiante,$matches);
+      $estudiante_cedula=$matches[1];
+      $out=shell_exec("grep -H '^$estudiante_cedula\$' Grupos/*.txt");
+      if(preg_match("/\d/",$out)){
+	preg_match("/grupo(\d+)\.txt/",$out,$matches);
+	$grupo=$matches[1];
+      }else{
+	$grupo="(No Id.)";
+      }
+      if($group==$grupo or $group==0){
+	$ftest="$estudiante/respuestas.txt";
+	$fensayo="$estudiante/ensayo.txt";
+	$nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
+	$nota_ensayo=rtrim(shell_exec("tail -n 1 $fensayo"));
+	$totpreguntas=$NUMTEST+$NUMESSAY;
+	$definitiva=($nota_test*$NUMTEST+$nota_ensayo*$NUMESSAY)/$totpreguntas;
+	$definitiva=sprintf("%.1f",$definitiva);
+	echo "<tr><td>$grupo</td><td>$estudiante_cedula</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+      }
+    }
+    echo "</table>";
+  }
   if($accion=="Solucion"){
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //EXAMEN
