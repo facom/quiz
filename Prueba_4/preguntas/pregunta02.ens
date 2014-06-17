@@ -1,0 +1,7 @@
+Escriba un script de bash que después de descargar el archivo de
+http://astronomia.udea.edu.co/tmp/moon.tar, cree una animación
+"moon.gif" con las imagenes que vienen empacadas en ese archivo.
+
+Después de ejecutar el script no pueden quedar ni el archivo moon.tar,
+ni las imagenes individuales o un directorio donde estas se hayan
+creado.  Solamente la animación.

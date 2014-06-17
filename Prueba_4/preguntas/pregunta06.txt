@@ -1,0 +1,17 @@
+Dado el siguiente algoritmo:
+
+- Pida un numero.
+- Determine por cuáles números es divisible.
+- Si los números por los que es divisible es él mismo y el número 1 el
+  número es primo.
+- Si no el número no es primo.
+
+¿Cuáles son los productos (salidas)?
+
+a) El número.
+b) La lista de los números primos.
+c) El primo.
+d) El número 1.
+e) Nunguna de las anteriores.
+
+#R#e

@@ -1,0 +1,11 @@
+Qué hace el siguiente algoritmo:
+
+- Pida la edad
+- Divida la edad por 10
+- La parte entera del resultado anterior es la respuesta
+
+a) Calcula la parte entera de la edad de una persona.
+b) Determina el número de décadas completas que ha vivido una persona.
+c) Determina si una persona tiene una edad par o impar.
+d) Carece completamente de propósito.
+e) Calcula el siglo en el que una persona nació.
