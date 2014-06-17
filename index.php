@@ -80,7 +80,8 @@ if(isset($_GET['profesor']) and $_POST['password']=='1qazxsw2'){
 
 echo<<<CONTENIDO
 <input type='hidden' name='password' value='$password'>
-<h3>Profesor</h3>
+<input type='hidden' name='group' value='$group'>
+<h3>Profesor (Grupo $group)</h3>
 $button<br/>
 $button2<br/>
 <input type='submit' name='accion' value='Solucion'><br/>
@@ -93,19 +94,28 @@ CONTENIDO;
     $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
     $estudiantes=preg_split("/\s*,\s*/",$out);
     $numestudiantes=count($estudiantes);
-    echo "<table border=1><tr><td>Cedula</td><td>Test</td><td>Ensayo</td><td>Definitiva</td></tr>";
+    echo "<table border=1><tr><td>Grupo</td><td>Cedula</td><td>Test</td><td>Ensayo</td><td>Definitiva</td></tr>";
     foreach($estudiantes as $estudiante){
       $estudiante=rtrim($estudiante);
       preg_match("/respuestas\/(\d+)/",$estudiante,$matches);
       $estudiante_cedula=$matches[1];
-      $ftest="$estudiante/respuestas.txt";
-      $fensayo="$estudiante/ensayo.txt";
-      $nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
-      $nota_ensayo=rtrim(shell_exec("tail -n 1 $fensayo"));
-      $totpreguntas=$NUMTEST+$NUMESSAY;
-      $definitiva=($nota_test*$NUMTEST+$nota_ensayo*$NUMESSAY)/$totpreguntas;
-      $definitiva=sprintf("%.1f",$definitiva);
-      echo "<tr><td>$estudiante_cedula</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+      $out=shell_exec("grep -H '^$estudiante_cedula\$' Grupos/*.txt");
+      if(preg_match("/\d/",$out)){
+	preg_match("/grupo(\d+)\.txt/",$out,$matches);
+	$grupo=$matches[1];
+      }else{
+	$grupo="(No Id.)";
+      }
+      if($group==$grupo or $group==0){
+	$ftest="$estudiante/respuestas.txt";
+	$fensayo="$estudiante/ensayo.txt";
+	$nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
+	$nota_ensayo=rtrim(shell_exec("tail -n 1 $fensayo"));
+	$totpreguntas=$NUMTEST+$NUMESSAY;
+	$definitiva=($nota_test*$NUMTEST+$nota_ensayo*$NUMESSAY)/$totpreguntas;
+	$definitiva=sprintf("%.1f",$definitiva);
+	echo "<tr><td>$grupo</td><td>$estudiante_cedula</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+      }
     }
     echo "</table>";
   }
@@ -584,6 +594,7 @@ if(isset($_GET['profesor']) and !isset($_POST['password'])){
 echo "<form method='post'>";
 echo<<<CONTENIDO
 Password:<input type="password" name="password"><br/>
+Grupo:<input type="text" name="group"><br/>
 <input type="submit" name="accion" value="accede">
 CONTENIDO;
 }else{
