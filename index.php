@@ -113,7 +113,7 @@ CONTENIDO;
 
 	if(!file_exists($fensayo)){
 	  echo "$estudiante_cedula NO CALIFICADO<br/>";
-	  $urlestudiante="<a href='?accion=califica&qestudiante=$estudiante_cedula>$estudiante_cedula</a>";
+	  $urlestudiante="<a href='?accion=califica&qestudiante=${estudiante_cedula}&cedula=0000&palabra=manual'>$estudiante_cedula</a>";
 	}else{
 	  $urlestudiante="$estudiante_cedula";
 	}
@@ -280,9 +280,13 @@ if($_GET["accion"]=="califica"){
   echo "<b>Calificando</b><br/>";
   
   //SEARCH FOR STDUDENTS
-  $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
-  $estudiantes=preg_split("/\s*,\s*/",$out);
-  $numestudiantes=count($estudiantes);
+  if(isset($qestudiante)){
+    $estudiantes=array("$DIRPRUEBA/respuestas/$qestudiante");
+  }else{
+    $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
+    $estudiantes=preg_split("/\s*,\s*/",$out);
+    $numestudiantes=count($estudiantes);
+  }
 
   $id=0;
   foreach($estudiantes as $estudiante){
@@ -294,7 +298,8 @@ if($_GET["accion"]=="califica"){
       //echo "El estudiante no puede calificar su propia evaluación<br/>";
       continue;
     }
-    if(!file_exists("$estudiante/.block")){
+    if(!file_exists("$estudiante/.block") or
+       isset($qestudiante)){
       echo "<form>";
       echo "<input type='hidden' name='estudiante' value='$estudiante'>";
       //echo "Calificando $estudiante<br/>";
@@ -307,10 +312,12 @@ if($_GET["accion"]=="califica"){
 	preg_match("/respuesta(\d+)\.txt/",$respuesta,$matching);
 	$n=$matching[1];
 	echo "<H4>Pregunta $n</H4>";
+	$pregunta=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.ens");
+	echo "<pre>$pregunta</pre>";
 	$respuesta=shell_exec("cat $respuesta");
-	echo "Respuesta estudiante:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
+	echo "<b>Respuesta estudiante</b>:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
 	$respuesta_esperada=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.sol");
-	echo "Respuesta esperada:<br/><pre style='background:yellow;color:red;padding:10px'>$respuesta_esperada</pre>";
+	echo "<b>Respuesta esperada</b>:<br/><pre style='background:yellow;color:red;padding:10px'>$respuesta_esperada</pre>";
 	echo "Evaluación:<br/><br/>";
 	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
 	$criterios=preg_split("/\n/",$out);
