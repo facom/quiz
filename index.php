@@ -139,9 +139,7 @@ CONTENIDO;
       foreach($estudiantes as $estudiante){
 	$estudiante_cedula=rtrim($estudiante);
 	$estdir="$DIRPRUEBA/respuestas/$estudiante_cedula";
-	echo "ESTUDIANTE:$estdir<br/>";
 	$out=shell_exec("grep -H '^$estudiante_cedula\$' Grupos/*.txt");
-	echo "OUT: $out<br/>";
 	if(preg_match("/\d/",$out)){
 	  preg_match("/grupo(\d+)\.txt/",$out,$matches);
 	  $grupo=$matches[1];
