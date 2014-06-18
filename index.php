@@ -321,10 +321,10 @@ if($_GET["accion"]=="califica"){
 	echo "<H4>Pregunta $n</H4>";
 	$pregunta=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.ens");
 	echo "<pre>$pregunta</pre>";
-	$respuesta=shell_exec("cat $respuesta");
-	echo "<b>Respuesta estudiante</b>:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
 	$respuesta_esperada=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.sol");
 	echo "<b>Respuesta esperada</b>:<br/><pre style='background:yellow;color:red;padding:10px'>$respuesta_esperada</pre>";
+	$respuesta=shell_exec("cat $respuesta");
+	echo "<b>Respuesta estudiante</b>:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
 	echo "Evaluación:<br/><br/>";
 	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
 	$criterios=preg_split("/\n/",$out);
@@ -851,10 +851,11 @@ Grupo:<input type="text" name="group"><br/>
 <input type="submit" name="accion" value="accede">
 CONTENIDO;
 }else{
+  /*
   if(file_exists("$DIRPRUEBA/.block")){
       echo "<p style='color:red'>La prueba esta deshabilitada.</a>";
       return 0;
-  }
+      }*/
 
 echo "<form>";
 echo<<<CONTENIDO
@@ -862,8 +863,11 @@ Documento de Identidad:<input type="text" name="cedula"><br/>
 Palabra secreta:<input type="password" name="palabra"><br/>
 <i style="font-size:12px">Escoge una palabra corta de facil recordacion</i><br/>
 <input type="submit" name="accion" value="consulta">
-<input type="submit" name="accion" value="presenta">
 CONTENIDO;
+ 
+ if(!file_exists("$DIRPRUEBA/.block")){
+   echo "<input type='submit' name='accion' value='presenta'>";
+ }
  if(file_exists("$DIRPRUEBA/.califica")){
    echo "<input type='submit' name='accion' value='califica'>";
  }
