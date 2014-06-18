@@ -95,7 +95,8 @@ CONTENIDO;
     $out=shell_exec("ls -md $DIRPRUEBA/respuestas/*");
     $estudiantes=preg_split("/\s*,\s*/",$out);
     $numestudiantes=count($estudiantes);
-    echo "<table border=1><tr><td>Grupo</td><td>Cedula</td><td>Test</td><td>Ensayo</td><td>Definitiva</td></tr>";
+    echo "<table border=1><tr><td>#</td><td>Grupo</td><td>Cedula</td><td>Test</td><td>Ensayo</td><td>Definitiva</td></tr>";
+    $iest=1;
     foreach($estudiantes as $estudiante){
       $estudiante=rtrim($estudiante);
       preg_match("/respuestas\/(\d+)/",$estudiante,$matches);
@@ -110,20 +111,26 @@ CONTENIDO;
       if($group==$grupo or $group==0){
 	$ftest="$estudiante/respuestas.txt";
 	$fensayo="$estudiante/ensayo.txt";
-
-	if(!file_exists($fensayo)){
-	  echo "$estudiante_cedula NO CALIFICADO<br/>";
-	  $urlestudiante="<a href='?accion=califica&qestudiante=${estudiante_cedula}&cedula=0000&palabra=manual'>$estudiante_cedula</a>";
+	$fprofesor="$estudiante/.profesor";
+	if(!file_exists($fprofesor)){
+	  $urlestudiante="<a href='?accion=califica&qestudiante=${estudiante_cedula}&cedula=0000&palabra=manual' target='_blank'>$estudiante_cedula</a>";
 	}else{
 	  $urlestudiante="$estudiante_cedula";
 	}
 	
 	$nota_test=rtrim(shell_exec("tail -n 1 $ftest"));
 	$nota_ensayo=rtrim(shell_exec("tail -n 1 $fensayo"));
-	$totpreguntas=$NUMTEST+$NUMESSAY;
-	$definitiva=($nota_test*$NUMTEST+$nota_ensayo*$NUMESSAY)/$totpreguntas;
+	$totcrit=rtrim(shell_exec("tail -n 2 $fensayo | head -n 1"));
+	$totpreguntas=$NUMTEST+$totcrit;
+	$definitiva=($nota_test*$NUMTEST+$nota_ensayo*$totcrit)/$totpreguntas;
 	$definitiva=sprintf("%.1f",$definitiva);
-	echo "<tr><td>$grupo</td><td>$urlestudiante</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+	
+	$nota_test=sprintf("%.1f",$nota_test);
+	$nota_ensayo=sprintf("%.1f",$nota_ensayo);
+	$definitiva=sprintf("%.1f",$definitiva);
+
+	echo "<tr><td>$iest</td><td>$grupo</td><td>$urlestudiante</td><td>$nota_test</td><td>$nota_ensayo</td><td>$definitiva</td></tr>";
+	$iest+=1;
       }
     }
     echo "</table>";
@@ -355,8 +362,8 @@ if($_GET["accion"]=="califica"){
 	echo "</table><br/>";
 	echo "<input type='hidden' name='cedula' value='$cedula'>";
 	echo "<input type='hidden' name='palabra' value='$palabra'>";
-	echo "<input type='submit' name='accion' value='evalua'>";
       }
+      echo "<input type='submit' name='accion' value='evalua'>";
       $id++;
       break;
     }
@@ -380,9 +387,13 @@ else if($_GET["accion"]=="evalua"){
   $respuestas=preg_split("/\s*,\s*/",$out);
   $numrespuestas=count($respuestas);
   $fl=fopen("$estudiante/ensayo.txt","w");
+  if($palabra=="manual"){
+    shell_exec("touch $estudiante/.profesor");
+  }
   fwrite($fl,"$cedula:$palabra\n");
   $definitiva=0;
   $ir=0;
+  $totcrit=0;
   foreach($respuestas as $respuesta){
     $respuesta=rtrim($respuesta);
     preg_match("/respuesta(\d+)\.txt/",$respuesta,$matching);
@@ -390,8 +401,10 @@ else if($_GET["accion"]=="evalua"){
     echo "<H4>Pregunta $n</H4>";
     $name="pregunta${n}_numcrit";
     $numcrit=$$name;
+    $totcrit+=$numcrit;
     //echo "Numero de criterios ($n,$name): $numcrit<br/>";
     $nota=0;
+    fwrite($fl,"$n:$numcrit\n");
     for($ic=1;$ic<=$numcrit;$ic++){
       $name="pregunta_${n}_critertio_$ic";
       $valor=$$name;
@@ -400,13 +413,14 @@ else if($_GET["accion"]=="evalua"){
       fwrite($fl,"\tC$ic:$valor\n");
     }
     $nota=$nota/$numcrit;
-    $definitiva+=$nota;
+    fwrite($fl,"\tNOTA:$nota\n");
+    $definitiva+=$nota*$numcrit;
     echo "<br/><b>Nota final pregunta $n</b>: $nota<br/>";
-    fwrite($fl,"$n:$nota\n");
     $ir++;
   }
-  $definitiva=$definitiva/$ir;
+  $definitiva=$definitiva/$totcrit;
   echo "<p><b>Nota definitiva</b>: $definitiva<br/>";
+  fwrite($fl,"$totcrit\n");
   fwrite($fl,"$definitiva\n");
   fclose($fl);
   homeLink();
@@ -426,11 +440,12 @@ else if($_GET["accion"]=="presenta"){
     $nota=rtrim(shell_exec("tail -n 1 $fresultado"));
     if($NUMESSAY>0){
       $notaensayo=rtrim(shell_exec("tail -n 1 $DIRPRUEBA/respuestas/$cedula/ensayo.txt"));
+      $totcrit=rtrim(shell_exec("tail -n 2 $DIRPRUEBA/respuestas/$cedula/ensayo.txt | head -n 1"));
     }else{
       $notaensayo=0;
     }
-    $totpreguntas=$NUMTEST+$NUMESSAY;
-    $definitiva=($nota*$NUMTEST+$notaensayo*$NUMESSAY)/$totpreguntas;
+    $totpreguntas=$NUMTEST+$totcrit;
+    $definitiva=($nota*$NUMTEST+$notaensayo*$totcrit)/$totpreguntas;
     $definitiva=sprintf("%.1f",$definitiva);
     $palabra=rtrim(shell_exec("head -n 1 $fresultado"));
     errorMsg("$cedula: tu unica oportunidad de presentar el examen ya paso (palabra
@@ -578,6 +593,187 @@ echo<<<CONTENIDO
   </p>
   </form>
 CONTENIDO;
+  homeLink();
+}
+////////////////////////////////////////////////////////////
+//PRESENTA
+////////////////////////////////////////////////////////////
+else if($_GET["accion"]=="consulta"){
+  if(!$prueba){
+    $out=shell_exec("ls -dm Prueba_*");
+    $out=preg_replace("/Prueba_/","",$out);
+    $out=preg_replace("/, T/","",$out);
+echo<<<PRUEBA
+<form>
+<input type='hidden' name='cedula' value='$cedula'>
+Estudiante: $cedula<br/>
+Prueba:<input type='text' name='prueba' size="3"><br/>
+<i>Disponibles: $out</i><br/>
+<input type='submit' name='accion' value='consulta'>
+PRUEBA;
+    homeLink();
+    return;
+  }
+  $DIRPRUEBA="Prueba_$prueba";
+  require_once("$DIRPRUEBA/prueba.conf");
+  echo "<H2>Resultado Prueba $prueba</H2>";
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  //CONTROL DE CEDULA
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  $fresultado="Prueba_$prueba/respuestas/$cedula/respuestas.txt";
+  if(!file_exists($fresultado)){
+    errorMsg("Usted no presento esta prueba.");
+    homeLink();
+    return;
+  }
+
+  $nota=rtrim(shell_exec("tail -n 1 $fresultado"));
+  if($NUMESSAY>0){
+    $notaensayo=rtrim(shell_exec("tail -n 1 $DIRPRUEBA/respuestas/$cedula/ensayo.txt"));
+    $totcrit=rtrim(shell_exec("tail -n 2 $DIRPRUEBA/respuestas/$cedula/ensayo.txt | head -n 1"));
+  }else{
+    $notaensayo=0;
+    $totcrit=0;
+  }
+  $notaensayo=sprintf("%.1f",$notaensayo);
+  $totpreguntas=$NUMTEST+$totcrit;
+  $definitiva=($nota*$NUMTEST+$notaensayo*$totcrit)/$totpreguntas;
+  $definitiva=sprintf("%.1f",$definitiva);
+  
+  if(isBlank($cedula)){
+    errorMsg("Debes proveer un numero de identificaci&oacute;n.");
+    homeLink();
+    return;
+  }
+  if(strlen($cedula)<6){
+    errorMsg("Tu cedula es demasiado corta.");
+    homeLink();
+    return;
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  //RESULTADO
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  print "<b>Cédula</b>: $cedula<br/>";
+  print "<b>Tu palabra clave fue</b>: $respuestas[0]<br/>";
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //PREGUNTAS TIPO TEST
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  $respuestas=file("$DIRPRUEBA/respuestas/$cedula/respuestas.txt");
+  $right=0;
+  echo "<HR/><H4>Preguntas Tipo Test</H4>";
+  for($i=1;$i<=$NUMTEST;$i++){
+    $respuesta=$respuestas[$i];
+    //echo "Respuesta: $respuesta<br/>";
+    $parts=preg_split("/:/",$respuesta);
+    $porder=$parts[0];
+    $n=sprintf("%02d",$parts[1]);
+    $resp=$parts[2];
+    preg_match("/(.+)\(/",$resp,$matches);
+    $resp=$matches[1];
+    //echo "Pregunta $porder: $n<br/>";
+    //echo "<H5>Pregunta $porder</H5>";
+    $pregunta="$DIRPRUEBA/preguntas/pregunta$n.txt";
+    $out=shell_exec("grep -v '#R#' $pregunta");
+    $parts=preg_split("/\./",$pregunta);
+    $imagen=sprintf("%s.png",$parts[0]);
+    if(file_exists($imagen)){
+      $img="<a href='$imagen'><img src='$imagen' width='600px'></a>";
+    }else{$img="";}
+    $respuesta=rtrim(shell_exec("grep '#R#' $pregunta"));
+    $respuesta=preg_replace("/[\s\n\r]*\#R\#[\s\n\r]*/","",$respuesta);
+echo<<<CONTENIDO
+  <H5>PREGUNTA $i:</H5>
+      $img
+      <pre>$out</pre>
+CONTENIDO;
+    if($respuesta==$resp){
+      $resultado="<i style=color:blue>Su respuesta fue correcta.</i>";
+      $right++;
+    }else{
+      $resultado="<i style=color:red>Debes tener más cuidado la próxima.</i>";
+    }
+    echo "Respuesta correcta: <b style=color:blue>$respuesta</b><br/>";
+    echo "Su respuesta: <b style=color:green>$resp</b><br/>";
+    echo "Resultado: $resultado<br/>";
+  }
+  
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //PREGUNTAS TIPO ENSAYO
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  if($NUMESSAY>0){
+    $ensayo="$DIRPRUEBA/respuestas/$cedula/ensayo.txt";
+    if(file_exists($ensayo)){
+      $respuestas=file($ensayo);
+      echo "<HR/><H4>Preguntas Tipo Ensayo</H4>";
+      $calificador=$respuestas[0];
+      $nl=1;
+      for($i=1;$i<=$NUMESSAY;$i++){
+	$caract=$respuestas[$nl];
+	$parts=preg_split("/:/",$caract);
+	$n=$parts[0];
+	$numcrit=$parts[1];
+	$pregunta="$DIRPRUEBA/preguntas/pregunta$n.ens";
+	$out=shell_exec("cat $pregunta");
+	$parts=preg_split("/\./",$pregunta);
+	$imagen=sprintf("%s.png",$parts[0]);
+	$solucion=sprintf("%s.sol",$parts[0]);
+	$matrix=sprintf("%s.mat",$parts[0]);
+	if(file_exists($imagen)){
+	  $img="<a href='$imagen'><img src='$imagen' width='600px'></a>";
+	}else{$img="";}
+	$respuesta=shell_exec("cat $DIRPRUEBA/respuestas/$cedula/respuesta$n.txt");
+	$solucion=shell_exec("cat $solucion");
+	echo "<H4>Pregunta $n (Número de criterios $numcrit)</H4>";
+	
+echo<<<CONTENIDO
+	 <H5>PREGUNTA $n:</H5>
+	 $img
+	 <pre>$out</pre>
+	 <b>Respuesta estudiante</b>:<br/>
+	 <pre style='background:lightgray;padding:10px'>$respuesta</pre>
+	 <b>Respuesta esperada</b>:<br/>
+	 <pre style='background:yellow;color:red;padding:10px'>$solucion</pre>
+	 <b>Evaluacion</b>:<br/>
+CONTENIDO;
+	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
+	$criterios=preg_split("/\n/",$out);
+	$ic=1;
+	echo "<table border=1>";
+	$val=0;
+	foreach($criterios as $criterio){
+	   if(!preg_match("/\w/",$criterio)){continue;}
+	   echo "<tr><td>$criterio</td>";
+	   $critresp=$respuestas[$nl+$ic];
+	   $parts=preg_split("/:/",$critresp);
+	   $val+=$parts[1];
+	   echo "<td>$parts[1]</td></tr>";
+	   $ic++;
+	}
+	$val/=$numcrit;
+	echo "<tr><td colspan=2>Resultado: $val</td></tr>";
+	echo "</table>";
+	$nl+=($numcrit+2);
+      }
+    }else{
+      errorMsg("No hay resultados para la parte de ensayo.");
+    }
+  }
+
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //BALANCE
+  //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+echo<<<RESULTADO
+<hr/>
+<H4>Resultado</H4>
+  <b>Test (Peso $NUMTEST):</b> $right correctas de $NUMTEST, Nota: $nota<br/>
+  <b>Ensayo (Peso $totcrit):</b> Nota: $notaensayo<br/>
+  <b>Definitiva:</b> $definitiva<br/>
+RESULTADO;
+
   homeLink();
 
 }else if($accion=="enviar"){
