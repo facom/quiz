@@ -25,7 +25,7 @@ function homeLink(){
 //CABECERA
 ////////////////////////////////////////////////////////////
 echo<<<CONTENIDO
-<H1>Prueba de Fundamentaci&oacute;n en Computaci&oacute;n</H1>
+<H1><a href=index.php>Prueba de Fundamentaci&oacute;n en Computaci&oacute;n</a></H1>
 <H2>$PRUEBA</H2>
 CONTENIDO;
 
@@ -618,6 +618,11 @@ PRUEBA;
   require_once("$DIRPRUEBA/prueba.conf");
   echo "<H2>Resultado Prueba $prueba</H2>";
 
+  if(file_exists("$DIRPRUEBA/.block")){
+    errorMsg("La prueba esta bloqueada porque todavia la están presentando otros grupos.");
+    homeLink();
+    return;
+  }
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //CONTROL DE CEDULA
   //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
