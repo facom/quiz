@@ -19,3 +19,9 @@ commit:
 pull:
 	git reset --hard HEAD	
 	git pull
+
+packresults:
+	tar cvf tmp/resultados.tar Prueba_*/respuestas
+
+unpackresults:
+	tar xvf tmp/resultados.tar Prueba_*/respuestas
