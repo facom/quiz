@@ -1,0 +1,7 @@
+Describa un algoritmo que dado un numero real r (menor que 1) y un
+numero natural N calcule la siguiente suma:
+
+   1 + r + r^2 + r^3 + ... + r^N
+
+Ayuda: para elevar a una potencia use la rutina "Potencia" que tiene
+como parametros la base (x) y el exponente (n)

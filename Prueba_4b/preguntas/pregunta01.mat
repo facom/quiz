@@ -1,0 +1,12 @@
+-:El algoritmo tiene una instrucción de inicio (Empieza)
+-:El algoritmo tiene una instrucción de entrada para r y N
+-:El algoritmo usa una estructura de control de repetición (para o haga...mientras)
+-:La estructura de repeticion usa los comandos "haga" y "repita"
+-:El algoritmo llama a la funcion "Potencia" 
+-:El algoritmo usa una variable de acumulacion.
+-:El algoritmo funciona correctamente (prueba de escritorio)
+-:El algoritmo presenta el resultado final
+-:El algoritmo tiene una instrucción de finalizacion (Termina)
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0

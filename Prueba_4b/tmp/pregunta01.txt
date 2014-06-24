@@ -1,0 +1,9 @@
+Cuál de los siguientes no es un insumo básico de los algoritmos:
+
+a) Los insumos (entradas)
+b) Las herramientas (rutinas)
+c) El arbol de relaciones (pesos)
+d) Los productos (salidas)
+e) El procedimiento (receta)
+
+#R#c
