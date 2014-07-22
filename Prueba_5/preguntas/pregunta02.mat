@@ -1,0 +1,8 @@
+-:La entrada con input esta bien escrita
+-:El ciclo for esta bien escrito (incluyendo uso correcto de xrange)
+-:La salida con print esta bien escrito
+-:El programa ejecuta sin errores
+-:Cuando al programa se le entra 6 devuelve 720
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0

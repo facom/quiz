@@ -523,7 +523,7 @@ echo<<<CONTENIDO
   <H5>PREGUNTA $n:</H5>
       $img
       <pre>$out</pre>
-      <p>Su repuesta:<input type="text" size=5 name="respuesta_estudiante_$i" value=""></p>
+      <p>Su repuesta:<input type="text" size=1 name="respuesta_estudiante_$i" value=""></p>
       <input type="hidden" name="respuesta_$i" value="$respuesta">
       <input type="hidden" name="original_$i" value="$original">
 CONTENIDO;

@@ -1,0 +1,13 @@
+#-*- coding:utf-8 -*-
+from numpy import sqrt
+
+N=input("Entre un numero natural:")
+
+for i in xrange(1,sqrt(N)):
+    if (N%i)==0:
+       print "%d no cumple la condicion"%N
+       exit(0)
+
+print "%d cumple la condición"%N
+
+

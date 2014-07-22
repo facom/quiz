@@ -1,0 +1,13 @@
+Traduzca a python el siguiente algoritmo expresado en pseudocódigo:
+
+	 Empieza Algoritmo "Factorial"
+	 Entre 1 valor: n (K)
+	 facotorial: n
+	 para i en 1,2,...n-1 haga (1)
+	      factorial : factorial * i
+	 repita (1)
+	 Muestre "Factorial de " n " es " factorial" (V)
+	 Termina Algoritmo
+
+Condiciones: el programa resultante debe ejecutarse sin errores y
+entregar un valor final correcto.

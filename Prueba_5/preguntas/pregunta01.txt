@@ -1,0 +1,8 @@
+Ejemplos de lenguajes compilados son:
+
+a) Python Perl y bash
+b) Fortran y C/C++
+c) Java y C#
+d) Ninguno de los anteriores
+
+#R#b

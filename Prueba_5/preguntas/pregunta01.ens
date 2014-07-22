@@ -1,0 +1,32 @@
+Considere el siguiente programa en python:
+
+  1   #-*- coding:utf-8 -*-
+  2   import numpy from pi
+  3   N:0
+  4   while N<1
+  5        N=input "Entre el numero de terminos:"
+  6        if N<1:
+  7              print "El número de términos debe ser mayor que " 1 ".  Intente de nuevo"
+  8
+  9   signo=1
+  10  suma=0
+  11
+  12  for i in range(1,N+1):
+  13        factor=1/(2*i-1)
+  14        suma=suma+signo x factor
+  15        signo=sign*(-1)
+  16
+  17  valor=sumar*4
+  18  diferencia=abs(valor-pi)
+  19  
+  20  print "Al usar %d términos el resultado es %f",N,valor
+  21  print "Este valor difiere en "%diferencia," del valor real"
+
+En el programa se han cometido un número dado de errores.  Identifique
+al menos 8 errores, indicando la línea, el error y como quedaría
+correctamente la línea sin el error.
+
+Ejemplo:
+
+0) Línea 7. En el print lo que se va a imprimir se separa por ",".
+   Falta "," alrededor del 1.  Correcto: print "...",1,"..."
