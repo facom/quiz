@@ -1,0 +1,8 @@
+Describa un algoritmo usando el pseudolenguaje visto en clase en el
+que dado un número N muestre en pantalla la lista de los primeros N
+términos de la sucesión de Fibonacci.  Los primeros 6 términos de la
+sucesión son:
+
+	 1 1 2 3 5 8 ...
+
+Cada nuevo término es la suma de los dos anteriores.

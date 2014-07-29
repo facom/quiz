@@ -1,0 +1,8 @@
+-:La entrada de N esta correcta
+-:El algoritmo incluye una estructura de repeticion (para o haga...mientras)
+-:El algoritmo esta completo (entrada,desarrollo,salida)
+-:Una prueba de escritorio con N=3 produce los primeros 3 términos "1 1 2"
+-:La "sintaxis" del pseudocódigo esta correcta (No en lo absoluto si más de 6 errores, Parcialmente correcto si entre 3 y 6 errores, Completamente correcto si menos que o 2 errores)
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0

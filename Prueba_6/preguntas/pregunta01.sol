@@ -1,0 +1,13 @@
+- Empieza Algoritmo "Fibonacci"
+- Entre 1 valor: N (K)
+- t1:1
+- t2:2
+- Muestre t1
+- Muestre t2
+- Para i en 3,4,...,N haga (1)
+  - termino:t1+t2
+  - t1:t2
+  - t2:termino
+  - Muestre termino
+- Repita (1)
+- Termina Algoritmo
