@@ -59,9 +59,17 @@ if(isset($_GET['profesor']) and $_POST['password']=='1qazxsw2'){
     shell_exec("touch $DIRPRUEBA/.block");
     echo "<i style='color:red'>Bloqueado.</i>";
   }
+  if($accion=="Esconde"){
+    shell_exec("touch $DIRPRUEBA/.noconsulta");
+    echo "<i style='color:red'>Solución a prueba escondida.</i>";
+  }
   if($accion=="Desbloquea"){
     shell_exec("rm -rf $DIRPRUEBA/.block");
     echo "<i style='color:red'>Desbloqueado.</i>";
+  }
+  if($accion=="Consulta"){
+    shell_exec("rm -rf $DIRPRUEBA/.noconsulta");
+    echo "<i style='color:red'>La solución a la prueba se puede consultar.</i>";
   }
 
   echo "<form method='post'>";
@@ -70,6 +78,12 @@ if(isset($_GET['profesor']) and $_POST['password']=='1qazxsw2'){
     $button="<input type='submit' name='accion' value='Desbloquea'>";
   }else{
     $button="<input type='submit' name='accion' value='Bloquea'>";
+  }
+
+  if(file_exists("$DIRPRUEBA/.noconsulta")){
+    $button3="<input type='submit' name='accion' value='Consulta'>";
+  }else{
+    $button3="<input type='submit' name='accion' value='Esconde'>";
   }
 
   if(file_exists("$DIRPRUEBA/.califica")){
@@ -84,6 +98,7 @@ echo<<<CONTENIDO
 <h3>Profesor (Grupo $group)</h3>
 $button
 $button2
+$button3
 <input type='submit' name='accion' value='Solucion'>
 <input type='submit' name='accion' value='Resultados'>
 <input type='submit' name='accion' value='Pruebas'>
@@ -618,7 +633,7 @@ PRUEBA;
   require_once("$DIRPRUEBA/prueba.conf");
   echo "<H2>Resultado Prueba $prueba</H2>";
 
-  if(file_exists("$DIRPRUEBA/.block")){
+  if(file_exists("$DIRPRUEBA/.noconsulta")){
     errorMsg("La prueba esta bloqueada porque todavia la están presentando otros grupos.");
     homeLink();
     return;
@@ -737,10 +752,10 @@ echo<<<CONTENIDO
 	 <H5>PREGUNTA $n:</H5>
 	 $img
 	 <pre>$out</pre>
-	 <b>Respuesta estudiante</b>:<br/>
-	 <pre style='background:lightgray;padding:10px'>$respuesta</pre>
 	 <b>Respuesta esperada</b>:<br/>
 	 <pre style='background:yellow;color:red;padding:10px'>$solucion</pre>
+	 <b>Respuesta estudiante</b>:<br/>
+	 <pre style='background:lightgray;padding:10px'>$respuesta</pre>
 	 <b>Evaluacion</b>:<br/>
 CONTENIDO;
 	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
@@ -791,6 +806,11 @@ RESULTADO;
     shell_exec("echo 'Rebaja' $DIRPRUEBA/respuestas/$cedula/rebaja.txt");
     return;
   } 
+  if(file_exists("$DIRPRUEBA/.time")){
+    echo "<i>El tiempo de entregar paso. Su prueba será recibida pero se le pondrá una sanción.</i>";
+    shell_exec("echo 'Tiempo' $DIRPRUEBA/respuestas/$cedula/tiempo.txt");
+  } 
+  
 echo<<<CONTENIDO
 Su repuesta ha sido recibida.  Preguntas $numpreguntas.
 <p></p>
