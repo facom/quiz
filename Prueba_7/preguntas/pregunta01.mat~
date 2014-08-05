@@ -1,0 +1,9 @@
+-:El programa incluye una instrucción de repetición (for o while)
+-:La estructura de repectición esta correctamente escrita (sintaxis)
+-:El programa ejecuta sin errores.
+-:El programa muestra el resultado correcto con N=100.
+-:El programa muestra el resultado correcto con N=1000.
+-:La salida del programa es exactamente como la descrita con N=100.
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0

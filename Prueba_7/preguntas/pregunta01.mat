@@ -1,0 +1,9 @@
+-:El programa incluye al menos una entrada.
+-:El programa incluye al menos tres comentarios.
+-:El programa ejecuta sin errores.
+-:El programa con N=20 muestra como diferencia 41230.
+-:El programa con N=-1 muestra un mensaje de error y se detiene.
+-:La salida del programa (cuando no hay error) es exactamente igual a lo esperado
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0
