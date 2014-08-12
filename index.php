@@ -333,7 +333,7 @@ if($_GET["accion"]=="califica"){
     }
     if(!file_exists("$estudiante/.block") or
        isset($qestudiante)){
-      echo "<form method='post'>";
+      echo "<form method='get'>";
       echo "<input type='hidden' name='estudiante' value='$estudiante'>";
       //echo "Calificando $estudiante<br/>";
       shell_exec("date > $estudiante/.block");
@@ -828,7 +828,6 @@ RESULTADO;
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //CALIFICAR
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-  /*
   if(file_exists("$DIRPRUEBA/respuestas/$cedula/respuestas.txt")){
     echo "Usted ya envio sus respuestas.";
     shell_exec("echo 'Rebaja' $DIRPRUEBA/respuestas/$cedula/rebaja.txt");
@@ -838,7 +837,6 @@ RESULTADO;
     echo "<i>El tiempo de entregar paso. Su prueba será recibida pero se le pondrá una sanción.</i>";
     shell_exec("echo 'Tiempo' $DIRPRUEBA/respuestas/$cedula/tiempo.txt");
   }
-  */
   
 echo<<<CONTENIDO
 Su repuesta ha sido recibida.  Preguntas $numpreguntas.
