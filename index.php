@@ -2,12 +2,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script src="etc/jquery.js"></script>
 <script>
-   function confirmar() {
+   function confirmar(trueel,fakeel) {
    var x;
    if (confirm("¿Esta seguro de enviar esta solución?") == true) {
-     document.getElementById("true_enviar").style.display="block";
-     document.getElementById("fake_enviar").style.display="none";
-     alert("Para enviar presione nuevamente el botón 'enviar'");
+     document.getElementById(trueel).style.display="block";
+     document.getElementById(fakeel).style.display="none";
+     alert("Para enviar presione nuevamente el botón que ahora esta verde");
    }
  }
 </script>
@@ -403,7 +403,10 @@ if($_GET["accion"]=="califica"){
 	echo "<input type='hidden' name='cedula' value='$cedula'>";
 	echo "<input type='hidden' name='palabra' value='$palabra'>";
       }
-      echo "<input type='submit' name='accion' value='evalua'>";
+echo<<<BUTTONS
+  <button id="fake_evalua" onclick="confirmar('true_evalua','fake_evalua')" form="JavaScript:void(null)" style="background-color:yellow">evalua</button>
+  <input style="display:none;background-color:green" id="true_evalua" type='submit' name='accion' value='evalua'>
+BUTTONS;
       $id++;
       break;
     }
@@ -630,7 +633,7 @@ CONTENIDO;
 
 echo<<<CONTENIDO
   <p>
-  <button id="fake_enviar" onclick="confirmar()" form="JavaScript:void(null)" style="background-color:yellow">enviar</button>
+  <button id="fake_enviar" onclick="confirmar('true_enviar','fake_enviar')" form="JavaScript:void(null)" style="background-color:yellow">enviar</button>
   <input style="display:none;background-color:green" id="true_enviar" type="submit" name="accion" value="enviar">
   </p>
   </form>
