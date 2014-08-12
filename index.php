@@ -1,5 +1,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="etc/jquery.js"></script>
+<script>
+   function confirmar() {
+   var x;
+   if (confirm("¿Esta seguro de enviar esta solución?") == true) {
+     document.getElementById("true_enviar").style.display="block";
+     document.getElementById("fake_enviar").style.display="none";
+     alert("Para enviar presione nuevamente el botón 'enviar'");
+   }
+ }
+</script>
 </head>
 <?php
 ////////////////////////////////////////////////////////////
@@ -322,7 +333,7 @@ if($_GET["accion"]=="califica"){
     }
     if(!file_exists("$estudiante/.block") or
        isset($qestudiante)){
-      echo "<form>";
+      echo "<form method='post'>";
       echo "<input type='hidden' name='estudiante' value='$estudiante'>";
       //echo "Calificando $estudiante<br/>";
       shell_exec("date > $estudiante/.block");
@@ -337,10 +348,24 @@ if($_GET["accion"]=="califica"){
 	$pregunta=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.ens");
 	echo "<pre>$pregunta</pre>";
 	$respuesta_esperada=shell_exec("cat $DIRPRUEBA/preguntas/pregunta$n.sol");
+	$imagen_esperada="$DIRPRUEBA/preguntas/pregunta$n.sol.png";
 	echo "<b>Respuesta esperada</b>:<br/><pre style='background:yellow;color:red;padding:10px'>$respuesta_esperada</pre>";
+	if(file_exists($imagen_esperada)){
+	  echo "<b>Imagen esperada</b>:<br/><img src=$imagen_esperada width=600px><br/>";
+	}	
 	$respuesta=shell_exec("cat $respuesta");
 	echo "<b>Respuesta estudiante</b>:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
-	echo "Evaluación:<br/><br/>";
+
+	$out=trim(shell_exec("ls $estudiante/respuesta${n}_archivo.*"));
+	if(preg_match("/\w/",$out)){
+	  $file=trim(shell_exec("basename $out"));
+	  echo "<b>Arhcivos enviados por estudiante</b>: <a href='$out' target='_blank'>$file</a><br/>";
+	  if(is_array(getimagesize($out))){
+	    echo "<img src=$out width=600px><br/>";
+	  }
+	}
+
+	echo "<b>Evaluación</b>:<br/><br/>";
 	$out=shell_exec("grep '^-' $DIRPRUEBA/preguntas/pregunta$n.mat | cut -f 2 -d ':'");
 	$criterios=preg_split("/\n/",$out);
 	$numcrit=count($criterios)-1;
@@ -492,7 +517,7 @@ clave '$palabra').  Obtuviste una nota de: <b>$nota ($NUMTEST)+$notaensayo ($NUM
 echo<<<CONTENIDO
   <H3>Estudiante: $cedula ($palabra)</H3>
   <H4>Prueba</H4>
-  <form method="get">
+  <form method="post" action="?" enctype="multipart/form-data">
 CONTENIDO;
 
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -593,10 +618,11 @@ echo<<<CONTENIDO
   <H5>PREGUNTA $n:</H5>
       $img
       <pre>$out</pre>
-      <p>Su repuesta:<br/>
+      Su repuesta:<br/>
       <textarea rows="30" cols="80" name="respuesta_ensayo_$original">
 $temptext
-      </textarea>
+      </textarea><br/>
+      <p>Archivo para subir:</p><input type="file" name="archivo_ensayo_$original">
       <br/>
       <input type="hidden" name="ensayo_$i" value="$original">
 CONTENIDO;
@@ -604,7 +630,8 @@ CONTENIDO;
 
 echo<<<CONTENIDO
   <p>
-  <input type='submit' name='accion' value='enviar'>
+  <button id="fake_enviar" onclick="confirmar()" form="JavaScript:void(null)" style="background-color:yellow">enviar</button>
+  <input style="display:none;background-color:green" id="true_enviar" type="submit" name="accion" value="enviar">
   </p>
   </form>
 CONTENIDO;
@@ -619,7 +646,7 @@ else if($_GET["accion"]=="consulta"){
     $out=preg_replace("/Prueba_/","",$out);
     $out=preg_replace("/, T/","",$out);
 echo<<<PRUEBA
-<form>
+<form method="get">
 <input type='hidden' name='cedula' value='$cedula'>
 Estudiante: $cedula<br/>
 Prueba:<input type='text' name='prueba' size="3"><br/>
@@ -801,6 +828,7 @@ RESULTADO;
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //CALIFICAR
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  /*
   if(file_exists("$DIRPRUEBA/respuestas/$cedula/respuestas.txt")){
     echo "Usted ya envio sus respuestas.";
     shell_exec("echo 'Rebaja' $DIRPRUEBA/respuestas/$cedula/rebaja.txt");
@@ -809,7 +837,8 @@ RESULTADO;
   if(file_exists("$DIRPRUEBA/.time")){
     echo "<i>El tiempo de entregar paso. Su prueba será recibida pero se le pondrá una sanción.</i>";
     shell_exec("echo 'Tiempo' $DIRPRUEBA/respuestas/$cedula/tiempo.txt");
-  } 
+  }
+  */
   
 echo<<<CONTENIDO
 Su repuesta ha sido recibida.  Preguntas $numpreguntas.
@@ -861,6 +890,17 @@ CONTENIDO;
       $fl=fopen("$DIRPRUEBA/respuestas/$cedula/respuesta$m.txt","w");
       fwrite($fl,"$respuesta");
       fclose($fl);
+      //print_r($_FILES);echo "<br/>";
+      $tmpfile=$_FILES["archivo_ensayo_$original"]["tmp_name"];
+      if(file_exists($tmpfile)){
+	$filename=$_FILES["archivo_ensayo_$original"]["name"];
+	$parts=preg_split("/\./",$filename);
+	$ext=$parts[1];
+	$filesize=$_FILES["archivo_ensayo_$original"]["size"];
+	$fileup="$DIRPRUEBA/respuestas/$cedula/respuesta${m}_archivo.$ext";
+	shell_exec("cp -rf $tmpfile $fileup");
+	echo "<b>Archivo subido para pregunta $n</b>: <a href=$fileup target='_blank'>$filename</a> ($filesize bytes)<br/>";
+      }
     }
   }
   homeLink();

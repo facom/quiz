@@ -1,0 +1,26 @@
+El número pi se puede calcular aproximadamente usando la serie:
+
+   pi^2 / 6 = 1/1^2 + 1/2^2 + 1/3^2 + ...
+
+Haga una gráfica que muestre el valor de pi aproximado con los
+primeros N términos de esta serie.  
+
+La gráfica debe tener en el eje x el número de términos usados en la
+serie y en el eje y el valor aproximado de pi calculado con ese número
+de términos.  Haga la gráfica hasta N=20.
+
+Como ejemplo los siguientes puntos deben estar en la gráfica:
+(1,2.45), (2,2.74), (3,2.86), (4,2.92), etc. donde los valores
+indicados fueron calculados con la serie.
+
+Condiciones:
+
+- Entregue abajo el programa que calcula los puntos y hace la gráfica.
+
+- No olvide poner comentarios explicativos en el programa.
+
+- Entregue también el archivo con la gráfica.
+
+- La gráfica debe tener correctamente nombrados los ejes y debe tener
+  un título.
+

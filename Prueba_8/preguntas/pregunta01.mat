@@ -1,0 +1,13 @@
+-:El programa tiene la instrucción from matplotlib import pyplot o equivalente.
+-:El programa contiene al menos un comando plot.
+-:El programa contiene el comando savefig con el nombre de una figura.
+-:El programa incluye al menos tres comentarios.
+-:El programa ejecuta sin errores.
+-:El programa produce una archivo con una gráfica.
+-:La gráfica entregada con el examen tiene el eje x nombrado.
+-:La gráfica entregada con el examen tiene el eje y nombrado.
+-:La gráfica entregada con el examen tiene título.
+-:La gráfica entregada tiene los valores que debería tener según la solución.
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0
