@@ -19,6 +19,7 @@ commit:
 pull:
 	git reset --hard HEAD	
 	git pull
+	make permissions
 
 packresults:
 	tar cvf tmp/resultados.tar Prueba_*/respuestas
