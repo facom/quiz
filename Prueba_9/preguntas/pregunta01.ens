@@ -1,0 +1,25 @@
+Un tren se mueve sobre una vía con aceleración constante de 2 m/s^2
+empezando desde el reposo hasta que alcanza una velocidad de 20 m/s.
+
+Hacer un programa que cree dos gráficos en una misma figura una con la
+posición vs. el tiempo y otra con la velocidad vs. el tiempo.
+
+La distancia dx recorrida por el tren con aceleración constante en un
+tiempo dt es:
+
+     dx = v dt + 0.5 a dt^2
+
+La velocidad dv ganada en el mismo intervalo es:
+
+     dv = a dt
+
+Condiciones:
+
+- Entregue abajo el programa que hace los dos gráficos.
+
+- No olvide poner comentarios explicativos en el programa.
+
+- Entregue también el archivo con la gráfica.
+
+- Las figuras deben tener correctamente nombrados los ejes y deben tener
+  un título.
