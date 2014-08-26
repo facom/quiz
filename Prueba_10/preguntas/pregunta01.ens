@@ -1,0 +1,45 @@
+El tiempo que le toma a un cuerpo en caer al piso después de ser
+lanzado con una velocidad inicial vo desde una altura h se puede
+encontrar resolviendo la siguiente ecuación cuadrática:
+
+   h + vo t - 0.5 g t^2 = 0
+
+Escriba un programa que dada la altura (h) y velocidad inicial (vo)
+determine el tiempo que tarda el cuerpo en caer al piso.
+
+Recuerde que las dos soluciones a una ecuación cuadrática:
+
+  a x^2 + b x + c = 0
+
+Se obtiene con la fórmula del bachiller:
+
+  x1 = (-b+sqrt(b^2-4ac))/(2a)
+
+  x2 = (-b-sqrt(b^2-4ac))/(2a)
+
+Las soluciones solo son reales si se cumple que b^2-4ac > 0.  En caso
+contrario la ecuación no tiene solución.
+
+Condiciones:
+
+- No use rutinas.
+
+- Tanto h como vo pueden ser 0 o tener valores negativos.
+
+- El programa debe tener comentarios.
+
+- Al ejecutarlo el programa debe mostrar la siguiente salida (excepto
+  la parte del comando):
+  
+  $ ./caida.out
+  Entre la altura (metros):10
+  Entre la velocidad (m/s):2
+  El tiempo de caída del cuerpo es: 1.647157 segundos
+
+- Al ejecutarlo con datos problemáticos la salida debe ser (excepto la
+  parte del comando):
+  
+  $ ./caida.out
+  Entre la altura (metros):-5
+  Entre la velocidad (m/s):-2
+  El problema no tiene solución

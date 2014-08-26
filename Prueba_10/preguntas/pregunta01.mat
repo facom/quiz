@@ -1,0 +1,13 @@
+-:El programa incluye al menos tres comentarios.
+-:El programa tiene una instrucción de declaración de variables.
+-:El programa al menos una instrucción "scanf" para las entrada y es correcta
+-:El programa incluye al menos un condicional "if" correctamente escrito.
+-:El programa tiene una instrucción "printf" que muestra el valor de una variable (usando %f).
+-:El programa compila.
+-:El programa ejecuta (independientemente que lo haga correctamente).
+-:El programa produce el tiempo correcto cuando h = 10 y vo = 2.
+-:El programa produce un mensaje de no solución cuando h = -5 y vo = -2.
+-:La salida del programa es exactamente igual a la esperada cuando h = 10 y vo = 2
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0
