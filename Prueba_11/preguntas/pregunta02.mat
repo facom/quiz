@@ -1,0 +1,13 @@
+-:El script incluye la instrucción "set term png" y esta correctamente escrita
+-:El script incluye la instrucción "set output" con el nombre del archivo y esta correctamente escrita
+-:El script tiene una instrucción para el título y esta correctamente escrita
+-:El script tiene una instrucción para el eje x y esta correctamente escrita
+-:El script tiene una instrucción para el eje y y esta correctamente escrita
+-:El script tiene una instrucción "plot" y esta correctamente escrita.
+-:El script corre sin errores.
+-:El script genera una archivo con una figura.
+-:La figura generada contiene una gráfica correcta de los datos.
+-:La figura es idéntica a la figura esperada.
+*:No en lo absoluto:0
+*:Parcialmente correcto:2.5
+*:Completamente correcto:5.0

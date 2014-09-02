@@ -1,0 +1,39 @@
+Hacer un script en gnuplot que gráfique los datos de la tabla de la
+ecuación del tiempo y los guarde en un archivo grafico "edt.png".
+
+El gráfico debe ser tal cuál se muestra arriba.
+
+Suba su gráfico.
+
+Si no tiene los datos aquí hay una muestra:
+
+1 -3.633367
+2 -4.070248
+3 -4.502351
+4 -4.929314
+5 -5.350731
+6 -5.766253
+7 -6.175501
+8 -6.578102
+9 -6.973725
+10 -7.362005
+11 -7.742625
+12 -8.115237
+13 -8.479542
+14 -8.835220
+15 -9.181961
+16 -9.519494
+17 -9.847520
+18 -10.165789
+19 -10.474031
+20 -10.771993
+21 -11.059452
+22 -11.336170
+23 -11.601950
+24 -11.856574
+25 -12.099870
+26 -12.331653
+27 -12.551753
+28 -12.760034
+29 -12.956345
+30 -13.140571

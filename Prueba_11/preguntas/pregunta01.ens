@@ -1,0 +1,30 @@
+El Sol no siempre esta en lo más alto del cielo al medio día.  Unos
+días se retrasa unos minutos y otros se adelanta.  El tiempo en
+minutos en el que se atrasa o adelanta se llama ecuación del tiempo y
+puede calcularse usando la fórmula:
+
+Dt = -7.659 sin M + 9.863 sin (2M+3.5932)
+
+Cuando Dt es negativo es porque el Sol se atrasa y el medio día solar
+ocurre un número de minutos igual a Dt después de las 12 m.
+
+En la formula anterior M esta dado por la fórmula:
+
+M = 6.24 + 0.017 D
+
+siendo D es el número de días transcurridos desde el primero de enero.
+
+Hacer un programa en C que cree en un archivo una tabla de valores de
+D (entre 0 y 365) y Dt.
+
+Condiciones:
+
+- El programa debe tener comentarios.
+
+- Al ejecutarlo el programa debe mostrar la siguiente salida (excepto
+  la parte del comando):
+  
+  $ ./ecuacion-del-tiempo.out
+  Tabulando la ecuación del tiempo...
+  Tabla guardada en 'edt.dat'...
+  Puede graficarla con gnuplot.

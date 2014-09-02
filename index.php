@@ -540,7 +540,7 @@ CONTENIDO;
   for($i=0;$i<$numpreguntas;$i++){
     array_push($indices,$i);
   }
-  shuffle($indices);
+  //shuffle($indices);
 
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //SHOW QUESTIONS
