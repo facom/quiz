@@ -1,0 +1,12 @@
+En el contexto del sistema de archivos, el término metadatos se refiere a:
+
+a) cada una de las divisiones lógicas de un dispositivo de
+   almacenamiento donde hay un Sistema de Archivos
+b) Una unidad básica de almacenamiento.
+c) Contenedores lógicos que agrupan archivos y otros directorios
+   relacionados.
+d) Información sobre los archivos y los directorios (fecha de
+   creación, tamaño, propietario, ubicación, etc.)
+e) Sistema que define qué usuarios pueden realizar qué operaciones sobre archivos y directorios
+
+#R#d

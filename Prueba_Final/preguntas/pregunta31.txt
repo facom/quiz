@@ -1,0 +1,9 @@
+El directorio "~" en Linux es:
+
+a) El directorio raiz del sistema (equivalente a la unidad C:).
+b) Un alias del directorio del usuario (/home/<usuario>).
+c) El directorio anterior al directorio actual.
+d) El directorio en el que uno se encuentra actualmente.
+e) El principio de cualquier path (Ej. ~/bin, ~/usr/sbin).
+
+#R#b

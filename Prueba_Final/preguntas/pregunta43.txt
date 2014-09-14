@@ -1,0 +1,25 @@
+Dado el siguiente programa en Python:
+
+     #-*- coding: utf-8 -*-
+
+     N=input("Ingrese un número:")
+
+     var=0
+
+     for i in xrange(1,N+1):
+
+     	 var=var+i
+
+     print "El resultado para ",N," es ",var
+
+Indique cuál es el resultado de ejecutar el programa e ingresar el
+número 5 cuando lo pide:
+
+a) 15
+b) 720
+c) 120
+d) 21
+e) Ninguno de los anteriores
+
+#R#a
+

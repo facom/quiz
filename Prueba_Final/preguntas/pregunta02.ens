@@ -1,0 +1,14 @@
+Escribir un programa en python que encuentre todas las tripletas de
+numeros enteros (a,b,c) menores de 100 tal que c^2 = a^2 + b^2.
+
+Condiciones:
+
+- El programa debe correr sin pedir nada desde el teclado.
+
+- El programa no debe producir ningun error al ejecutar.
+
+- La lista de tripletas debe contener al menos la mitad de las
+  tripletas correctas.
+
+Ayuda: la funcion "int" en python saca la parte entera de un número
+       real.  Así int(2.6) devuelve 2.

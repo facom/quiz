@@ -609,7 +609,7 @@ CONTENIDO;
     $pregunta=$preguntas[$indice];
     $out=shell_exec("cat $pregunta");
     $parts=preg_split("/\./",$pregunta);
-    $imagen=sprintf("%s.png",$parts[0]);
+    $imagen=sprintf("%s.ens.png",$parts[0]);
     $template=sprintf("%s.tem",$parts[0]);
     if(file_exists($imagen)){
       $img="<a href='$imagen'><img src='$imagen' width='600px'></a>";

@@ -1,0 +1,12 @@
+La jerarquia de memoria es:
+
+a) El orden de la memoria en el computador de acuerdo con su latencia.
+b) La organizacion de la memoria de acuerdo a su relacion con el
+   procesador.
+c) El orden de los dispositivos de almacenamiento de acuerdo a la
+   velocidad con la que la informacion se lee desde ellos.
+d) El sistema que define el orden en que la informacion es transferida
+   desde y hacia el procesador.
+e) Todas las anterioes
+
+#R#e

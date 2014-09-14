@@ -1,0 +1,14 @@
+Dada la siguiente configuracion: Ultrabook con procesador Intel Core
+i3, RAM 4GB, tarjeta de video integrada, disco duro de estado solido
+de 250 GB, solo WiFi. A que usuario le recomendarias este equipo:
+
+a) Un ingeniero que debe disenar edificios en una oficina.
+b) Un disenador de videojuegos que crea videojuegos en su casa.
+c) Un estudiante de ciencias que debe tener disponible en todo lugar
+   el computador para realizar tareas e informes.
+d) Un cientifico que debe llevar su computador a otro instituto y
+   tiene que correr simulaciones usando visualizacion avanzada.
+e) Un cafe internet donde los equipos solamente son usados para leer
+   redes sociales y editar archivos.
+
+#R#c

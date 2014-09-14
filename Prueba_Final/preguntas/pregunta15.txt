@@ -1,0 +1,10 @@
+El lenguaje informático usado para representar las paginas en la web
+es:
+
+a) El inglés.
+b) No hay un lenguaje preferido.
+c) El HyperText Markup Language (HTML).
+d) Java.
+e) Flash.
+
+#R#c

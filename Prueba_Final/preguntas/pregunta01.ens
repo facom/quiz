@@ -1,0 +1,10 @@
+Escribir un script en python que en un mismo gráfico muestre las
+funciones trigonométricas tal y como se presenta en la figura que
+acompaña este punto.
+
+Condiciones:
+
+- El script debe tener al menos 3 comentarios.
+
+- La figura resultante debe lucir *exactamente* como se muestra
+  arriba, incluyendo colores, letras, tipos de línea, etiquetas, etc.

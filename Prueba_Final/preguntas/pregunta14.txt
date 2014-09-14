@@ -1,0 +1,9 @@
+Las partes de un URL son:
+
+a) MAC, IP fuente, IP destino, archivo.
+b) Esquema, maquina, directorio, archivo.
+c) Directorio, nombre, extension.
+d) 4 números entre 0 y 255.
+e) Ninguna de las anteriores
+
+#R#b

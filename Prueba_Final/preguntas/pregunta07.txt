@@ -1,0 +1,13 @@
+Una diferencia fundamental entre el almacenamiento de informacion en
+un disco duro (magnetico) y en una memoria flash es:
+
+a) La memoria flash almacena la informacion usando 1s y 0s pero el
+   disco no.
+b) La memoria flash no tiene partes moviles.
+c) La velocidad de almacenamiento del disco duro es mayor que la de la
+   flash.
+d) Lo que se almacena en las memorias flash desaparece al apagar el
+   computador.
+e) Todas las anteriores
+
+#R#b

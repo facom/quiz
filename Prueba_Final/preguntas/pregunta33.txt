@@ -1,0 +1,12 @@
+¿Cuál de los siguientes comandos esta bien escrito según las reglas
+generales de los comandos de Linux?:
+
+a) $ ls_-l-a
+b) $ cp-rf_archivo.txt_archivo-viejo.txt
+c) $ mkdir_--p_"Musica_Clasica"
+d) $ df_-aHl
+e) Todos los anteriores
+
+NOTA: "$" significa que es un comando, "_" es un espacio en blanco.
+
+#R#d

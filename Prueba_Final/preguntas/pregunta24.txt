@@ -1,0 +1,10 @@
+¿Usando cuáles comandos de la terminal puedo editar un documento de
+texto plano?
+
+a) cate, emacs, nano.
+b) nano, emacs, gedit.
+c) more, less, nano.
+d) head, tail, cate
+e) todos los anteriores
+
+#R#b
