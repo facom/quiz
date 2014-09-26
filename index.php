@@ -70,6 +70,14 @@ if(isset($_GET['profesor']) and $_POST['password']=='1qazxsw2'){
     shell_exec("touch $DIRPRUEBA/.block");
     echo "<i style='color:red'>Bloqueado.</i>";
   }
+  if($accion=="Mantenimiento"){
+    shell_exec("touch .maintainance");
+    echo "<i style='color:red'>En Mantenimiento.</i>";
+  }
+  if($accion=="Abre"){
+    shell_exec("rm -rf .maintainance");
+    echo "<i style='color:red'>Abierto.</i>";
+  }
   if($accion=="Esconde"){
     shell_exec("touch $DIRPRUEBA/.noconsulta");
     echo "<i style='color:red'>Solución a prueba escondida.</i>";
