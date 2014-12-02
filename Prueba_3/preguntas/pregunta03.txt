@@ -1,9 +1,0 @@
-¿Usualmente qué información se muestra en el prompt del shell?
-
-a) La fecha y la hora.
-b) El nombre del equipo.
-c) El nombre del usuario.
-d) a y b son ciertas
-e) b y c son ciertas
-
-#R#e

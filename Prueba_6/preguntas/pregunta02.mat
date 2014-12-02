@@ -1,9 +1,0 @@
--:El programa incluye una instrucción de repetición (for o while)
--:La estructura de repectición esta correctamente escrita (sintaxis)
--:El programa ejecuta sin errores.
--:El programa muestra los términos de la sucesión correctamente con N=8.
--:El programa muestra los términos de la sucesión correctamente con N=10.
--:La salida del programa es exactamente como la descrita con N=8.
-*:No en lo absoluto:0
-*:Parcialmente correcto:2.5
-*:Completamente correcto:5.0

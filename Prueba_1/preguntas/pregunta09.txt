@@ -1,9 +1,0 @@
-Cual de los siguientes no un es parametro basico de la memoria RAM:
-
-a) El numero de modulos.
-b) El tamano de la palabra (32 o 64 bits)
-c) La velocidad del bus de datos.
-d) El numero de pines de los modulos.
-e) El tipo de almacenamiento, estatico o dinamico.
-
-#R#b

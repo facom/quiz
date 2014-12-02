@@ -1,9 +1,0 @@
-De los siguientes dispositivos cual no es un computador:
-
-a) Tableta
-b) Consola avanzada de juegos
-c) Celular Inteligente
-d) Ultrabook
-e) Televisor inteligente
-
-#R#e

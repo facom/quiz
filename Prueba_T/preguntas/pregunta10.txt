@@ -1,9 +1,0 @@
-Cual de los siguientes no un es parametro basico de la CPU:
-
-a) La frecuencia del reloj.
-b) El tamano de la cache.
-c) El tamano de la palabra (32 o 64 bits).
-d) El modelo.
-e) El tipo de transferencia de datos, estatico o dinamico.
-
-#R#e

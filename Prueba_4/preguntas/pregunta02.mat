@@ -1,9 +1,0 @@
--:¿El script corre sin producir errores?
--:¿El script crea un archivo "moon.gif"?
--:¿El archivo "moon.gif" tiene la animación?
--:¿El script no deja archivos o directorios temporales? (ej. archivo moon.tar, archivos jpg o directorios)
--:¿El script tiene los comandos en el orden correcto? (aunque individualmente los comandos pueden o no ser correctos)
--:¿Todos los comandos del script son correctos?
-*:No en lo absoluto:0
-*:Parcialmente correcto:2.5
-*:Completamente correcto:5.0

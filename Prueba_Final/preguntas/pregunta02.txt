@@ -1,9 +1,0 @@
-Cuales de los siguientes son las componentes basicos de un computador:
-
-a) Procesador, Memoria, Buses de datos
-b) Chasis, Monitor, Teclado
-c) CPU, Perifericos, Internet
-d) Mouse, Teclado, Monitor y CPU
-e) Memoria RAM, Disco Duro, Procesador
-
-#R#a

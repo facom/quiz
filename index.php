@@ -36,7 +36,7 @@ function homeLink(){
 //CABECERA
 ////////////////////////////////////////////////////////////
 echo<<<CONTENIDO
-<H1><a href=index.php>Prueba de Fundamentaci&oacute;n en Computaci&oacute;n</a></H1>
+<H1><a href=index.php>Primer Parcial de Fundamentaci&oacute;n en Computaci&oacute;n</a></H1>
 <H2>$PRUEBA</H2>
 CONTENIDO;
 
@@ -170,7 +170,7 @@ CONTENIDO;
     echo "</table>";
   }
   if($accion=="Pruebas"){
-    $pruebas=shell_exec("ls -md Prueba_[0-9]*");
+    $pruebas=shell_exec("ls -md Prueba_[a-zA-Z0-9]*");
     $pruebas=preg_split("/\s*,\s*/",$pruebas);
     echo "<H3>Resultados de las pruebas</H3>";
     foreach($pruebas as $prueba){
@@ -362,6 +362,8 @@ if($_GET["accion"]=="califica"){
 	  echo "<b>Imagen esperada</b>:<br/><img src=$imagen_esperada width=600px><br/>";
 	}	
 	$respuesta=shell_exec("cat $respuesta");
+	$respuesta=preg_replace("/</","&lt;",$respuesta);
+	$respuesta=preg_replace("/>/","&gt;",$respuesta);
 	echo "<b>Respuesta estudiante</b>:<br/><pre style='background:lightgray;padding:10px'>$respuesta</pre>";
 
 	$out=trim(shell_exec("ls $estudiante/respuesta${n}_archivo.*"));
@@ -783,6 +785,8 @@ CONTENIDO;
 	  $img="<a href='$imagen'><img src='$imagen' width='600px'></a>";
 	}else{$img="";}
 	$respuesta=shell_exec("cat $DIRPRUEBA/respuestas/$cedula/respuesta$n.txt");
+	$respuesta=preg_replace("/</","&lt;",$respuesta);
+	$respuesta=preg_replace("/>/","&gt;",$respuesta);
 	$solucion=shell_exec("cat $solucion");
 	echo "<H4>Pregunta $n (Número de criterios $numcrit)</H4>";
 	

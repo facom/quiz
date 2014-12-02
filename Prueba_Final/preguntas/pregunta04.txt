@@ -1,9 +1,0 @@
-Cual de las siguientes es la memoria de acceso mas rapido:
-
-a) Memoria RAM
-b) Memoria Cache
-c) Memoria Flash
-d) Disco Duro
-e) Todas tienen la misma velocidad de acceso
-
-#R#b
